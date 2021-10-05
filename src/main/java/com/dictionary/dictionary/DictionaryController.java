@@ -130,6 +130,6 @@ public class DictionaryController implements Initializable {
         type.setBackground(new Background( new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY)));
         word_explain.setBackground(new Background( new BackgroundFill(Color.rgb(255, 255, 255), CornerRadii.EMPTY, Insets.EMPTY)));
         loadData();
-        System.out.println("hehe");
+        //System.out.println("hehe");
     }
 }

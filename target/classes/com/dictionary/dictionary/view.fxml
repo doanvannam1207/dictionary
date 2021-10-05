@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="578.0" prefWidth="869.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.dictionary.dictionary.DictionaryController">
+    <children>
+        <ImageView fitHeight="578.0" fitWidth="908.0" layoutX="1.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@img/background.jpg" />
+            </image>
+        </ImageView>
+        <Label layoutX="236.0" layoutY="15.0" prefHeight="58.0" prefWidth="397.0" text="TỪ ĐIỂN ANH - VIỆT" textFill="#08f214">
+            <font>
+                <Font name="System Bold" size="40.0" />
+            </font>
+            <effect>
+                <DisplacementMap>
+                    <mapData>
+                        <FloatMap />
+                    </mapData>
+                </DisplacementMap>
+            </effect>
+        </Label>
+        <ListView fx:id="words" layoutX="21.0" layoutY="144.0" onMouseClicked="#selectItem" prefHeight="420.0" prefWidth="342.0" />
+        <Button layoutX="699.0" layoutY="81.0" mnemonicParsing="false" onAction="#search" prefHeight="51.0" prefWidth="148.0" text="Search" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="24.0" />
+            </font>
+            <effect>
+                <Blend />
+            </effect>
+        </Button>
+        <Label alignment="TOP_LEFT" layoutX="435.0" layoutY="150.0" prefHeight="45.0" prefWidth="107.0" text="Loại từ" textFill="WHITE" wrapText="true">
+            <font>
+                <Font name="Arial" size="26.0" />
+            </font>
+        </Label>
+        <TextField fx:id="word_to_find" layoutX="21.0" layoutY="81.0" onKeyReleased="#Findword" prefHeight="51.0" prefWidth="668.0" promptText="Nhập từ cần tìm">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </TextField>
+        <MenuButton layoutX="21.0" layoutY="24.0" mnemonicParsing="false" text="Tùy chọn">
+            <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+            </items>
+            <font>
+                <Font name="System Bold" size="18.0" />
+            </font>
+        </MenuButton>
+        <Label fx:id="type" layoutX="435.0" layoutY="195.0" prefHeight="27.0" prefWidth="397.0">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="435.0" layoutY="244.0" prefHeight="32.0" prefWidth="131.0" text="Phiên âm" textFill="WHITE">
+            <font>
+                <Font name="Arial" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="pronounce" layoutX="435.0" layoutY="289.0" prefHeight="27.0" prefWidth="397.0">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Label layoutX="435.0" layoutY="338.0" prefHeight="32.0" prefWidth="99.0" text="Nghĩa" textFill="WHITE">
+            <font>
+                <Font name="Arial" size="26.0" />
+            </font>
+        </Label>
+        <Label fx:id="word_explain" alignment="TOP_LEFT" layoutX="435.0" layoutY="379.0" prefHeight="180.0" prefWidth="397.0" wrapText="true">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+        <Button layoutX="699.0" layoutY="25.0" mnemonicParsing="false" onAction="#speak" prefHeight="48.0" prefWidth="148.0" text="SPEAK" textAlignment="CENTER">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Button>
+    </children>
+</AnchorPane>

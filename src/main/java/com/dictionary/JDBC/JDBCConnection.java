@@ -3,6 +3,7 @@ package com.dictionary.JDBC;
 import java.sql.*;
 
 class JDBCConncetion {
+    //Tạo kết nối với MySQL
     public static Connection getJDBCConnection() {
         final String url = "jdbc:mysql://localhost:3306/dictionary";
         final String user = "root";

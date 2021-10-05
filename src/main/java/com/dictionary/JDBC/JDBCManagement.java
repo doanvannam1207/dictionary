@@ -12,12 +12,13 @@ import java.util.List;
 public class JDBCManagement {
 
     private static Connection connection = JDBCConncetion.getJDBCConnection();
+    //Lấy danh sách tất cả các từ trên MySQL
     public List<Word> getAllWord () {
-        List<Word> words = new ArrayList<>();
-        String sql = "SELECT * FROM WORD";
+        List<Word> words = new ArrayList<>(); // tạo 1 list
+        String sql = "SELECT * FROM WORD"; //câu lệnh MySQL
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement(sql);
-            ResultSet result = preparedStatement.executeQuery();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql); //Thực thi câu lệnh
+            ResultSet result = preparedStatement.executeQuery(); // lấy kết quả
             while (result.next()) {
                 Word word = new Word();
                 word.setWord_target(result.getString("word_target"));
@@ -32,6 +33,7 @@ public class JDBCManagement {
         return words;
     }
 
+    //thêm từ vào mySQL
     public void addWord(Word word) {
         String sql = "INSERT INTO WORD (WORD_TARGET, WORD_TYPE, WORD_PRONOUNCE, WORD_EXPLAIN) VALUES (?,?,?,?)";
         try {

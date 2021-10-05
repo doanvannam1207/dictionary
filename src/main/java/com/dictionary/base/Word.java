@@ -5,10 +5,10 @@ import java.io.Serializable;
 
 //Kế thừa interface Serializable để có thể đọc và ghi đối tượng vào file
 public class Word implements Serializable {
-    private String word_target;
-    private String word_explain;
-    private String type;
-    private String pronounce;
+    private String word_target;  //từ tiếng Anh
+    private String word_explain; //nghĩa
+    private String type;  //loại từ
+    private String pronounce;  //phiên âm
 
     public String getWord_target() {
         return word_target;

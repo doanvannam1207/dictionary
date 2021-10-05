@@ -9,8 +9,8 @@ import java.util.Scanner;
 
 public class DictionaryManagement {
     private final Scanner sc = new Scanner(System.in);
-    private  static Dictionary dictionary = new Dictionary();
-    private static JDBCManagement jdbcManagement = new JDBCManagement();
+    private  static Dictionary dictionary = new Dictionary(); //tạo 1 đối tượng dictionary để thao tác với danh sách từ
+    private static JDBCManagement jdbcManagement = new JDBCManagement(); // đối tượng liên thao tác với MySQL
 
     public static Dictionary getDictionary() {
         return dictionary;
@@ -48,10 +48,12 @@ public class DictionaryManagement {
         }
     }
 
-    //Thêm từ vựng từ file có sẵn sử dụng FileInPutStream, ObjectInputStream
+    //Thêm từ vựng từ file có sẵn sử dụng FileReader, BufferReader
     public void insertFromFile() {
         List<Word> words = dictionary.getWords();
+        //khi down về máy cần viết lại liên kết file
         File file = new File ("C:\\Users\\Admin\\OneDrive\\Desktop\\Nam\\Dictionary\\data\\dictionaries.txt");
+        //try-catch dùng để xử lý ngoại lệ
         try {
             FileReader fileReader = new FileReader(file);
             try {
@@ -59,8 +61,12 @@ public class DictionaryManagement {
                 String s = bufferedReader.readLine(); // đọc dòng đầu tiên
                 while (s != null) {
                     Word word = new Word();
-                    String Word = s.toLowerCase();
+                    String Word = s.toLowerCase(); //chuyển toàn bộ ký tự về chữ thường
                     char temp[] = Word.toCharArray(); // chuyển chuỗi s về dạng mảng kí tự
+                    /*tìm các ký tự đặc biệt đã quy định trong file từ để ngăn cách giữa
+                    word_target, type, pronounce, word_explain để tách chuỗi
+                    chuỗi quy định có dạng: word_target=type*pronounce%word_explain
+                     */
                     for (int i = 0; i < s.length(); i++) {
                         int dem1 = 0, dem2 = 0, dem3 = 0;
                         if (Word.charAt(i) == '=') {
@@ -71,9 +77,13 @@ public class DictionaryManagement {
                                     for (int k = dem2; k < s.length(); k++) {
                                         if (Word.charAt(k) == '%') {
                                             dem3 = k;
+                                            //copy dem1 ký tự từ vị trí 0
                                             word.setWord_target(String.copyValueOf(temp, 0, dem1));
+                                            //copy type từ sau ký tự '=' tới trước ký tự '*'
                                             word.setType(String.copyValueOf(temp, dem1 + 1,dem2 - dem1 - 1));
+                                            //copy pronounce từ sau ký tự '*' tới trước ký tự '%'
                                             word.setPronounce(String.copyValueOf(temp, dem2 + 1, dem3 - dem2 -1));
+                                            //copy phần còn lại
                                             word.setWord_explain(String.copyValueOf(temp, dem3 + 1, s.length() - dem3 -1));
                                         }
                                     }
@@ -81,10 +91,9 @@ public class DictionaryManagement {
                             }
                         }
                     }
-                    words.add(word);
+                    words.add(word); //thêm từ vào danh sách
                     s = bufferedReader.readLine(); // đọc dòng tiếp theo
                 }
-
                 bufferedReader.close();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -95,8 +104,17 @@ public class DictionaryManagement {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        dictionary.setWords(words);
+        dictionary.setWords(words); // cập nhật lại danh sách
     }
+
+    //xuất danh sách word ra file
+    /*
+    ************************************************************************************************
+    LƯU Ý: word là 1 đối tượng Word word = new Word(); nên class Word thừa kế interface Serializable
+    để có thể thao tác với file
+    Ở đây dùng FileOutputStream và ObjectOutputStream để ghi danh sách đối tượng ra file
+    * **********************************************************************************************
+     */
     public void dictionaryExportToFile() {
         List<Word> words = dictionary.getWords();
         File file = new File ("C:\\Users\\Admin\\OneDrive\\Desktop\\Nam\\Dictionary\\data\\data.txt");
@@ -113,9 +131,10 @@ public class DictionaryManagement {
         }
     }
 
-    //đọc dữ liệu từ file
+    //đọc dữ liệu từ file dùng FileInputStream và ObjectInputStream
     public List<Word> getWordFromData() {
         List<Word> words = new ArrayList<>();
+        //khi down về máy cần viết lại liên kết file
         File file = new File ("C:\\Users\\Admin\\OneDrive\\Desktop\\Nam\\Dictionary\\data\\data.txt");
         try {
             FileInputStream fileInputStream = new FileInputStream(file);
@@ -131,7 +150,7 @@ public class DictionaryManagement {
         return words;
     }
 
-    //tra từ, nhưng vẫn phân biệt chữ hoa chữ thường, khi nào rảnh sẽ update
+    //tra từ trong bản text, đồ họa sẽ có hàm khác, nhưng vẫn phân biệt chữ hoa chữ thường, khi nào rảnh sẽ update
     public void dictionaryLookup () {
         List<Word> words = getWordFromData();
         System.out.println("Nhập từ cần tìm: ");
@@ -146,6 +165,7 @@ public class DictionaryManagement {
         }
     }
 
+    //thêm từ vào danh sách trong file đã xuất ra từ trước
     public void dictionaryAddWord() {
         List<Word> wordFromData = getWordFromData(); // lấy danh sách từ từ trong file đã xuất ra
         System.out.println("Nhập từ mới: ");
@@ -160,6 +180,7 @@ public class DictionaryManagement {
         dictionaryExportToFile(); // xuất lại ra file
     }
 
+    //sửa từ
     public void dictionaryUpdateWord() {
         List<Word> wordFromData = getWordFromData(); // lấy danh sách từ từ trong file đã xuất ra
         System.out.println("Nhập từ muốn sửa: ");
@@ -175,6 +196,7 @@ public class DictionaryManagement {
         dictionaryExportToFile(); // xuất lại ra file
     }
 
+    //xóa từ
     public void dictionaryDeleteWord() {
         List<Word> wordFromData = getWordFromData(); // lấy danh sách từ từ trong file đã xuất ra
         System.out.println("Nhập từ muốn xóa: ");
@@ -188,6 +210,10 @@ public class DictionaryManagement {
         dictionaryExportToFile(); // xuất lại ra file
     }
 
+    //Xuất danh sách word ra Cơ sở dữ liệu MySQL
+    /*
+    LƯU Ý: để dùng được hàm này thì trên máy cần kết nối MySQL và tạo bảng trên 1 địa chỉ y hệt
+     */
     public void dictionaryExportToMySQL() {
         List<Word> words = dictionary.getWords();
         for (Word word: words) {
@@ -195,6 +221,7 @@ public class DictionaryManagement {
         }
     }
 
+    //Lấy danh sách từ trên MySQL
     public List<Word> getWordFromMySQL() {
         List<Word> words = jdbcManagement.getAllWord();
         return words;

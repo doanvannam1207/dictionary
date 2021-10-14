@@ -1,0 +1,38 @@
+.root {
+   -fx-background-color: #4169e1;
+}
+#myLabel {
+  -fx-font-size: 25;
+  -fx-font-family: "Lucida Console";
+  -fx-text-fill: "white";
+}
+#dictionaryButton {
+  -fx-font-size: 20;
+  -fx-font-family: "Lucida Console";
+  -fx-text-fill: "black";
+  -fx-background-color: #FFFFFF;
+}
+#speakButton {
+  -fx-font-size: 14;
+  -fx-font-family: "Lucida Console";
+  -fx-text-fill: "black";
+  -fx-background-color: #FFFFFF;
+}
+#translateButton {
+  -fx-font-size: 14;
+  -fx-font-family: "Lucida Console";
+  -fx-text-fill: "black";
+  -fx-background-color: #FFFFFF;
+}
+
+#textEN {
+  -fx-font-size: 18;
+  -fx-font-family: "Lucida Console";
+  -fx-text-fill: "white";
+}
+#textVI {
+  -fx-font-size: 18;
+  -fx-font-family: "Lucida Console";
+  -fx-text-fill: "white";
+
+}

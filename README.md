@@ -11,9 +11,6 @@ Mô phỏng ứng dụng từ điển Anh - Việt với nhiều chức năng gi
 3. Nghe phát âm.
 4. Dịch trực tiếp đoạn văn.
 ## Download
-1. [IDE IntelliJi để chạy chương trình Java](https://www.jetbrains.com/idea/download/#section=windows)
-2. [JDK 16.01](https://gluonhq.com/products/javafx/)
-3. [JavaFx để dựng đồ họa bằng ngôn ngữ Java (version 17.0.0.1)](https://gluonhq.com/products/javafx/)
-4. [Scene Builder Install](https://gluonhq.com/products/scene-builder/)
+ [IDE IntelliJi để chạy chương trình Java](https://www.jetbrains.com/idea/download/#section=windows)
 
-Để chạy project, mở bằng IntelliJ IDEA, sử dụng jdk1.16.01 và mysql-connector-java-8.0.25.jar trong thư mục jar trong project nếu chưa tự động add, reload file maven trước khi chạy.
+Để chạy project, mở bằng IntelliJ IDEA, sử dụng jdk1.16.01 và tất cả các file trong thư mục jar trong project nếu chưa tự động add, reload file maven trước khi chạy.
